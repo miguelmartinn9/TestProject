@@ -9,13 +9,13 @@ export default class FetchExample extends React.Component {
     }
 
     componentDidMount(){
-        return fetch('https://facebook.github.io/react-native/movies.json')
+        return fetch('https://www.mapabase.es/arcgis/rest/services/Otros/Gasolineras/FeatureServer/0/query?where=1%3D1&outFields=*&outSR=4326&f=json')
             .then((response) => response.json())
             .then((responseJson) => {
 
                 this.setState({
                     isLoading: false,
-                    dataSource: responseJson.movies,
+                    dataSource: responseJson.fields,
                 }, function(){
 
                 });
@@ -42,10 +42,13 @@ export default class FetchExample extends React.Component {
             <View style={{flex: 1, paddingTop:20}}>
                 <FlatList
                     data={this.state.dataSource}
-                    renderItem={({item}) => <Text>{item.title}, {item.releaseYear}</Text>}
+                    renderItem={({item}) => <Text>{item.name}</Text>}
                     keyExtractor={({id}, index) => id}
                 />
             </View>
         );
     }
 }
+
+
+
